@@ -2,7 +2,7 @@
 const rockPaperScissors = [`Rock`, `Paper`, `Scissors`];
 
 
-// Game logic
+// Game logic of 1 round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log(`%cIt's a tie, you both chose ${playerSelection}`, `background-color: yellow`);
