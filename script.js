@@ -5,7 +5,7 @@ const rockPaperScissors = [`Rock`, `Paper`, `Scissors`];
 // Game logic
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log(`It's a tie, you both chose ${playerSelection}`);
+        console.log(`%cIt's a tie, you both chose ${playerSelection}`, `background-color: yellow`);
     }
     else if (
         (playerSelection === `Rock`) && (computerSelection === `Paper`) ||
@@ -13,11 +13,11 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === `Scissors`) && (computerSelection === `Rock`)
     ) {
         computerScore++;
-        console.log(`You lose this round! ${computerSelection} beats your ${playerSelection}`);
+        console.log(`%cYou lose this round! ${computerSelection} beats your ${playerSelection}`, `background-color: orange`);
     }
     else {
         userScore++;
-        console.log(`You win this round! Your ${playerSelection} beats ${computerSelection}`);
+        console.log(`%cYou win this round! Your ${playerSelection} beats ${computerSelection}`, `background-color: #66FF99`);
     }
 }
 
@@ -43,9 +43,9 @@ function playGame() {
 
     // Print winner and scores
     if (userScore > computerScore) {
-        console.log(`You won. It's ${userScore} to ${computerScore}`);
+        console.log(`You won ${userScore} to ${computerScore}`);
     }
     else if (userScore < computerScore) {
-        console.log(`You lost. It's ${userScore} to ${computerScore}`);
+        console.log(`You lost ${userScore} to ${computerScore}`);
     }
 }
