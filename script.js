@@ -1,34 +1,51 @@
-// Initializing array with rock, paper scissors values
+// Initializing array with rock, paper and scissors values
 const rockPaperScissors = [`Rock`, `Paper`, `Scissors`];
 
-// Computer choosing random string within the array and storing it in variable computerSelection
-const computerSelection = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
 
-// Ask user to pick rock, paper or scissors and store it in playerSelection variable
-let playerSelection = prompt(`Pick Rock, Paper or Scissors`);
-playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-console.log(playerSelection);
-
-function playGame(computerSelection, playerSelection) {
-    if (
+// Game logic
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        console.log(`It's a tie, you both chose ${playerSelection}`);
+    }
+    else if (
         (playerSelection === `Rock`) && (computerSelection === `Paper`) ||
         (playerSelection === `Paper`) && (computerSelection === `Scissors`) ||
         (playerSelection === `Scissors`) && (computerSelection === `Rock`)
     ) {
-        return `You lose!`;
-    }
-    else if (
-        (playerSelection === `Rock`) && (computerSelection === `Scissors`) ||
-        (playerSelection === `Paper`) && (computerSelection === `Rock`) ||
-        (playerSelection === `Scissors`) && (computerSelection === `Paper`)
-    ) {
-        return `You win!`;
+        computerScore++;
+        console.log(`You lose this round! ${computerSelection} beats your ${playerSelection}`);
     }
     else {
-        return `It's a tie!`;
+        userScore++;
+        console.log(`You win this round! Your ${playerSelection} beats ${computerSelection}`);
     }
 }
 
-console.log(playGame(computerSelection, playerSelection));
+// Create variables for user and computer score
+let userScore = 0;
+let computerScore = 0;
 
+// Play rounds until one hits the score of 5
+function playGame() {
+    while ((userScore < 5) && (computerScore < 5)) {
 
+        // Computer chooses random Rock, Paper or Scissors from the array
+        const computerSelection = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
+
+        // Asks user to input Rock, Paper or Scissors
+        let playerSelection = prompt(`Pick Rock, Paper or Scissors`);
+        // Capitalize first letter of the input while the rest is converted to lower case
+        playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+
+        // Play 1 round
+        playRound(playerSelection, computerSelection);
+    };
+
+    // Print winner and scores
+    if (userScore > computerScore) {
+        console.log(`You won. It's ${userScore} to ${computerScore}`);
+    }
+    else if (userScore < computerScore) {
+        console.log(`You lost. It's ${userScore} to ${computerScore}`);
+    }
+}
